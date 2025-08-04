@@ -29,16 +29,29 @@ jobs:
           mcp_config: |
             {
               "mcpServers": {
-                "exa": {
+                "sequential-thinking": {
                   "command": "npx",
-                  "args": ["-y", "exa-mcp-server"],
-                  "env": {
-                    "EXA_API_KEY": "${{ secrets.EXA_API_KEY }}"
-                  }
+                  "args": [
+                    "-y",
+                    "@modelcontextprotocol/server-sequential-thinking"
+                  ]
                 }
               }
             }
-          allowed_tools: "mcp__exa__web_search_exa"          
+          allowed_tools: "mcp__sequential-thinking__sequentialthinking"             
+          # mcp_config: |
+          #   {
+          #     "mcpServers": {
+          #       "exa": {
+          #         "command": "npx",
+          #         "args": ["-y", "exa-mcp-server"],
+          #         "env": {
+          #           "EXA_API_KEY": "${{ secrets.EXA_API_KEY }}"
+          #         }
+          #       }
+          #     }
+          #   }
+          # allowed_tools: "mcp__exa__web_search_exa"          
           # mcp_config: |
           #   {
           #     "mcpServers": {
