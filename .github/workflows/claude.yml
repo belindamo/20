@@ -31,11 +31,23 @@ jobs:
               "mcpServers": {
                 "search": {
                   "command": "npx",
-                  "args": ["-y", "open-websearch@latest"]
+                  "args": ["-y", "mcp-remote", "https://mcp.exa.ai/mcp?exaApiKey=${{ secrets.EXA_API_KEY }}"]
                 }
               }
             }
-          allowed_tools: "mcp__search__search"
+          allowed_tools: "mcp__exa__web_search_exa"  
+          # # THIS ONE WORKS
+          # mcp_config: |
+          #   {
+          #     "mcpServers": {
+          #       "search": {
+          #         "command": "npx",
+          #         "args": ["-y", "open-websearch@latest"]
+          #       }
+          #     }
+          #   }
+          # allowed_tools: "mcp__search__search"
+          # # THE ONES BELOW DON'T
           # mcp_config: |
           #   {
           #     "mcpServers": {
