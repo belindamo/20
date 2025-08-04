@@ -35,7 +35,7 @@ jobs:
                 }
               }
             }
-          allowed_tools: "mcp__exa__web_search_exa"  
+          allowed_tools: "mcp__search__web_search_exa"  
           # # THIS ONE WORKS
           # mcp_config: |
           #   {
