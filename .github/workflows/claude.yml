@@ -1,4 +1,4 @@
-name: Literature Review
+name: Researcher
 
 on:
   pull_request:
@@ -6,7 +6,6 @@ on:
 
 jobs:
   lit-review:
-    # Only run if the source branch (head_ref) starts with 'lit-review/'
     if: startsWith(github.head_ref, 'lit-review/')
     runs-on: ubuntu-latest
     permissions:
@@ -27,17 +26,17 @@ jobs:
           direct_prompt: |
             You are a research assistant following CS197 methodology. 
             Focus on comprehensive paper review using Semantic Scholar and Exa.
-          # mcp_config: |
-          # {
-          #   "mcpServers": {
-          #     "semantic-scholar": {
-          #       "command": "uvx",
-          #       "args": ["semantic-scholar-mcp"],
-          #       "env": {
-          #         "SEMANTIC_SCHOLAR_API_KEY": "${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}"
-          #       }
-          #     }
-          #   }
-          # }
-          # allowed_tools: "mcp__semantic-scholar__search_papers,mcp__semantic-scholar__get_paper,mcp__semantic-scholar__get_author,mcp__semantic-scholar__get_paper_citations,mcp__semantic-scholar__get_paper_references,mcp__semantic-scholar__search_authors,mcp__semantic-scholar__get_recommendations"
+          mcp_config: |
+            {
+              "mcpServers": {
+                "semantic-scholar": {
+                  "command": "uvx",
+                  "args": ["semantic-scholar-mcp"],
+                  "env": {
+                    "SEMANTIC_SCHOLAR_API_KEY": "${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}"
+                  }
+                }
+              }
+            }
+          allowed_tools: "mcp__semantic-scholar__search_papers,mcp__semantic-scholar__get_paper,mcp__semantic-scholar__get_author,mcp__semantic-scholar__get_paper_citations,mcp__semantic-scholar__get_paper_references,mcp__semantic-scholar__search_authors,mcp__semantic-scholar__get_recommendations"
 
