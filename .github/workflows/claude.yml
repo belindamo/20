@@ -3,7 +3,6 @@ name: Literature Review
 on:
   pull_request:
     types: [opened, synchronize]
-    branches: [main]  # Only PRs targeting main branch
 
 jobs:
   lit-review:
