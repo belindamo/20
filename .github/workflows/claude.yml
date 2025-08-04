@@ -9,7 +9,7 @@ jobs:
     if: startsWith(github.head_ref, 'lit-review/')
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       pull-requests: read
       id-token: write
     steps:
