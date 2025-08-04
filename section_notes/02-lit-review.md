@@ -1,5 +1,7 @@
 # Literature Review
 
+# Literature Review
+
 ## Overview
 
 This literature review examines the current state of transformer model compression for edge deployment, focusing on three primary techniques: knowledge distillation, quantization, and architectural optimization. The review follows CS197 methodology, analyzing each paper through the lens of problem identification, prior assumptions, novel insights, technical approaches, evaluation methods, and broader impact.
@@ -196,3 +198,7 @@ This flip suggests exploring compression techniques that prioritize deployment e
 
 ---
 *Enhanced using CS197 Research Methodology by The Research Company AI Agent*
+
+
+---
+*This section is being enhanced by The Research Company AI Agent*
