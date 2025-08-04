@@ -1,11 +1,13 @@
-name: Claude Auto Review
+name: Literature Review
 
 on:
   pull_request:
     types: [opened, synchronize]
+    branches:
+      - 'lit-review/**'
 
 jobs:
-  auto-review:
+  lit-review:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -17,22 +19,25 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Automatic PR Review
+      - name: Literature Review
         uses: anthropics/claude-code-action@beta
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           timeout_minutes: "60"
           direct_prompt: |
-            Please review this pull request and provide comprehensive feedback.
+            You are a research assistant following CS197 methodology. 
+            Focus on comprehensive paper review using Semantic Scholar and Exa.
+          mcp_config: |
+          {
+            "mcpServers": {
+              "semantic-scholar": {
+                "command": "uvx",
+                "args": ["semantic-scholar-mcp"],
+                "env": {
+                  "SEMANTIC_SCHOLAR_API_KEY": "${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}"
+                }
+              }
+            }
+          }
+          allowed_tools: "mcp__semantic-scholar__search_papers,mcp__semantic-scholar__get_paper,mcp__semantic-scholar__get_author,mcp__semantic-scholar__get_paper_citations,mcp__semantic-scholar__get_paper_references,mcp__semantic-scholar__search_authors,mcp__semantic-scholar__get_recommendations"
 
-            Focus on:
-            - Code quality and best practices
-            - Potential bugs or issues
-            - Performance considerations
-            - Security implications
-            - Test coverage
-            - Documentation updates if needed
-
-            Provide constructive feedback with specific suggestions for improvement.
-            Use inline comments to highlight specific areas of concern.
-          # allowed_tools: "mcp__github__create_pending_pull_request_review,mcp__github__add_comment_to_pending_review,mcp__github__submit_pending_pull_request_review,mcp__github__get_pull_request_diff"
