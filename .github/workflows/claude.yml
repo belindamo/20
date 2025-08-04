@@ -16,7 +16,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0 # fetches entire git history
 
       - name: Literature Review
         uses: anthropics/claude-code-action@beta
@@ -32,60 +32,11 @@ jobs:
                 "search": {
                   "command": "npx",
                   "args": ["-y", "mcp-remote", "https://mcp.exa.ai/mcp?exaApiKey=${{ secrets.EXA_API_KEY }}"]
+                },
+                "git": {
+                  "command": "uvx",
+                  "args": ["mcp-server-git"]
                 }
               }
             }
-          allowed_tools: "mcp__search__web_search_exa"  
-          # # THIS ONE WORKS
-          # mcp_config: |
-          #   {
-          #     "mcpServers": {
-          #       "search": {
-          #         "command": "npx",
-          #         "args": ["-y", "open-websearch@latest"]
-          #       }
-          #     }
-          #   }
-          # allowed_tools: "mcp__search__search"
-          # # THE ONES BELOW DON'T
-          # mcp_config: |
-          #   {
-          #     "mcpServers": {
-          #       "sequential-thinking": {
-          #         "command": "npx",
-          #         "args": [
-          #           "-y",
-          #           "@modelcontextprotocol/server-sequential-thinking"
-          #         ]
-          #       }
-          #     }
-          #   }
-          # allowed_tools: "mcp__sequential-thinking__sequentialthinking"             
-          # mcp_config: |
-          #   {
-          #     "mcpServers": {
-          #       "exa": {
-          #         "command": "npx",
-          #         "args": ["-y", "exa-mcp-server"],
-          #         "env": {
-          #           "EXA_API_KEY": "${{ secrets.EXA_API_KEY }}"
-          #         }
-          #       }
-          #     }
-          #   }
-          # allowed_tools: "mcp__exa__web_search_exa"          
-          # mcp_config: |
-          #   {
-          #     "mcpServers": {
-          #       "semantic-scholar": {
-          #         "command": "uvx",
-          #         "args": ["semantic-scholar-mcp"]
-          #         # "env": {
-          #         #   "SEMANTIC_SCHOLAR_API_KEY": "${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}"
-          #         # }
-          #       }
-          #     }
-          #   }
-          # allowed_tools: "mcp__semantic-scholar__search_papers"
-          # allowed_tools: "mcp__semantic-scholar__search_papers,mcp__semantic-scholar__get_paper,mcp__semantic-scholar__get_author,mcp__semantic-scholar__get_paper_citations,mcp__semantic-scholar__get_paper_references,mcp__semantic-scholar__search_authors,mcp__semantic-scholar__get_recommendations"
-
+          allowed_tools: "mcp__search__web_search_exa,mcp__git__git_log,mcp__git__git_show" 
