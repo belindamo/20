@@ -25,18 +25,16 @@ jobs:
           timeout_minutes: "60"
           direct_prompt: |
             You are a research assistant following CS197 methodology. 
-            Focus on comprehensive paper review using Arxiv. Use git to review what has been done in the past. 
+            Focus on comprehensive paper review using Arxiv. 
+            Use git to review what has been done in the past. 
+            Update section_notes/02-lit-review.md with your review. 
           mcp_config: |
             {
               "mcpServers": {
                 "search": {
                   "command": "npx",
                   "args": ["-y", "mcp-remote", "https://mcp.exa.ai/mcp?exaApiKey=${{ secrets.EXA_API_KEY }}"]
-                },
-                "git": {
-                  "command": "uvx",
-                  "args": ["mcp-server-git"]
                 }
               }
             }
-          allowed_tools: "mcp__search__web_search_exa,mcp__git__git_log,mcp__git__git_show"
+          allowed_tools: "mcp__search__web_search_exa"
