@@ -7,7 +7,7 @@ on:
 jobs:
   lit-review:
     # Only run if the source branch (head_ref) starts with 'lit-review/'
-    # if: startsWith(github.head_ref, 'lit-review/')
+    if: startsWith(github.head_ref, 'lit-review/')
     runs-on: ubuntu-latest
     permissions:
       contents: read
